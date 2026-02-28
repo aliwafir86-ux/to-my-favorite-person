@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Little Gallery 🧡</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fffaf0;
+            color: #4a4a4a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #ff7f50;
+            margin-bottom: 10px;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .subtitle {
+            margin-bottom: 30px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* Tata Letak Galeri */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 10px;
+        }
+
+        .gallery-item {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .gallery-item p {
+            font-size: 0.9rem;
+            color: #ff7f50;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            margin-top: 40px;
+            background-color: #ff7f50;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #e66d43;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Our Memories 🧡</h1>
+    <p class="subtitle">Every picture tells a story of us...</p>
+
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="foto1.jpg" alt="Memory 1">
+            <p>The Beginning ✨</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="foto2.jpg" alt="Memory 2">
+            <p>Your Beautiful Smile 😊</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="foto3.jpg" alt="Memory 3">
+            <p>Best Date Ever! 🍕</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="foto4.jpg" alt="Memory 4">
+            <p>Just You & Me 🧡</p>
+        </div>
+
+        </div>
+
+    <a href="index.html" class="back-btn">⬅ Back to Home</a>
+
+</body>
+</html>
