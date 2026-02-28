@@ -64,7 +64,6 @@
             font-weight: bold;
         }
 
-        /* --- BAGIAN TOMBOL BARU --- */
         .button-group {
             margin-top: 40px;
             display: flex;
@@ -85,12 +84,12 @@
         }
 
         .back-btn {
-            background-color: #4a4a4a; /* Warna gelap agar kontras */
+            background-color: #4a4a4a;
             color: white;
         }
 
         .love-btn {
-            background-color: #ff7f50; /* Warna oren khasmu */
+            background-color: #ff7f50;
             color: white;
             box-shadow: 0 4px 15px rgba(255,127,80, 0.3);
         }
@@ -107,6 +106,10 @@
     </style>
 </head>
 <body>
+
+    <audio id="myAudio" loop>
+        <source src="musik.mp3" type="audio/mpeg">
+    </audio>
 
     <h1>Our Memories 🧡</h1>
     <p class="subtitle">Every picture tells a story of us...</p>
@@ -139,6 +142,24 @@
     </div>
 
     <script>
+        const audio = document.getElementById('myAudio');
+
+        // FUNGSI MUSIK NYAMBUNG
+        window.addEventListener('load', () => {
+            const savedTime = localStorage.getItem('audioTime');
+            if (savedTime) {
+                audio.currentTime = savedTime;
+            }
+            audio.play().catch(() => {
+                console.log("Klik di mana saja untuk memutar musik jika tertahan browser.");
+            });
+        });
+
+        // Simpan waktu musik setiap detik agar sinkron saat pindah halaman
+        setInterval(() => {
+            localStorage.setItem('audioTime', audio.currentTime);
+        }, 1000);
+
         function sayLove() {
             alert("I Love You More Than Anything, Mujayyanah! 🧡✨");
         }
