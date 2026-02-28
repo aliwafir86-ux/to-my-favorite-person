@@ -23,6 +23,16 @@
             position: relative; /* Tambahan untuk posisi hati melayang */
         }
 
+        /* FITUR BARU: Efek Hati saat Klik */
+        .click-heart {
+            position: fixed;
+            font-size: 20px;
+            color: #ff7f50;
+            pointer-events: none;
+            z-index: 9999;
+            animation: clickPop 0.8s ease-out forwards;
+        }
+
         .container {
             text-align: center;
             background: white;
@@ -140,6 +150,10 @@
         }
 
         /* Animasi */
+        @keyframes clickPop {
+            0% { transform: scale(1) translateY(0); opacity: 1; }
+            100% { transform: scale(1.5) translateY(-50px); opacity: 0; }
+        }
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -198,6 +212,17 @@
         const caption = document.getElementById('photo-caption');
         const audio = document.getElementById('myAudio');
 
+        // FITUR BARU: Efek Klik Muncul Hati
+        document.addEventListener('click', (e) => {
+            const heart = document.createElement('div');
+            heart.innerHTML = '🧡';
+            heart.className = 'click-heart';
+            heart.style.left = (e.clientX - 10) + 'px';
+            heart.style.top = (e.clientY - 10) + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 800);
+        });
+
         // LOGIKA BARU: Efek Mengetik Judul
         const titleElement = document.getElementById('typing-title');
         const textToType = "Happy Birthday, Mujayyanah! 🎂";
@@ -217,15 +242,13 @@
         const wishText = document.getElementById('wish-text');
 
         candleArea.addEventListener('click', () => {
-            candle.innerHTML = "🍰"; // Lilin "mati" jadi kue potongan
+            candle.innerHTML = "🍰"; 
             wishText.style.display = "block";
-            // Beri efek hati melimpah saat tiup lilin
             for(let i=0; i<15; i++) {
                 setTimeout(createHeart, i * 100);
             }
         });
 
-        // Fungsi membuat hati melayang
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart-bg');
@@ -237,7 +260,6 @@
         }
         setInterval(createHeart, 600);
 
-        // Jalankan efek ngetik saat load
         window.addEventListener('load', () => {
             localStorage.removeItem('audioTime'); 
             audio.currentTime = 0;
@@ -254,7 +276,6 @@
             { src: 'foto5.jpg', msg: 'And I want to spend more years with you. 🥂' }
         ];
 
-        // FITUR LUCU: Pesan Tombol Berubah
         const buttonMessages = [
             "Lagi? Oke! 📸",
             "Ciee nungguin ya? 😋",
@@ -275,8 +296,6 @@
             if (photoIndex < photos.length) {
                 memoryImg.src = photos[photoIndex].src;
                 caption.innerText = photos[photoIndex].msg;
-                
-                // Ganti teks tombol biar lucu
                 nextBtn.innerText = buttonMessages[photoIndex % buttonMessages.length];
             } else {
                 caption.innerHTML = "<strong>You've seen them all!</strong><br>Ready to see our full gallery?";
