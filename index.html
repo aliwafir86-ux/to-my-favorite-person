@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Sayang!</title>
     <style>
+        /* Gaya Dasar */
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fff5f5;
+            background-color: #fffaf0; /* Sedikit krem agar cocok dengan oren */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,6 +18,8 @@
             color: #4a4a4a;
             overflow: hidden;
         }
+
+        /* Container Utama */
         .container {
             text-align: center;
             background: white;
@@ -24,26 +27,108 @@
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             max-width: 80%;
-            animation: fadeIn 2s ease-in;
+            animation: fadeIn 1.5s ease-in;
+            position: relative;
         }
+
+        /* Teks Judul dan Sorotan - Diubah ke Warna Oren */
+        h1, .highlight {
+            color: #ff7f50; /* Warna Oren (Coral) */
+            transition: color 0.3s ease;
+        }
+
         h1 {
-            color: #ff4d6d;
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
+
         p {
             line-height: 1.6;
             font-size: 1.1rem;
+            margin-bottom: 20px;
         }
+
         .highlight {
             font-weight: bold;
-            color: #ff4d6d;
         }
+
+        /* Animasi Hati di Bawah Teks */
         .hearts {
             font-size: 30px;
             margin-top: 20px;
             animation: bounce 1.5s infinite;
         }
+
+        /* --- FITUR FOTO BARU --- */
+
+        /* Tombol Spesial */
+        #show-photo-btn {
+            background-color: #ff7f50; /* Warna Oren */
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 10px rgba(255,127,80, 0.3);
+            margin-top: 20px;
+        }
+
+        #show-photo-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255,127,80, 0.4);
+        }
+
+        /* Kontainer Foto Tersembunyi */
+        #photo-container {
+            display: none; /* Awalnya tidak terlihat */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            z-index: 1000;
+            text-align: center;
+            width: 300px; /* Atur lebar foto sesuai kebutuhan */
+            opacity: 0;
+            animation: popIn 0.5s forwards ease-out; /* Animasi muncul */
+        }
+
+        #photo-container.show {
+            display: block; /* Menampilkan kontainer */
+        }
+
+        /* Gaya untuk Foto Itu Sendiri */
+        #memory-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Tombol Tutup Foto */
+        #close-photo-btn {
+            background-color: #4a4a4a;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* Animasi untuk Popup Foto */
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Animasi yang Sudah Ada */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -56,7 +141,7 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" id="main-content">
         <h1>Happy Birthday, [Namanya]! 🎂</h1>
         
         <p>Happy Birthday buat orang yang paling sering bikin aku senyum sendiri depan HP.</p>
@@ -66,8 +151,34 @@
         
         <p><i>To more birthdays, more memories, and more 'us' ahead!</i></p>
 
-        <div class="hearts">💖✨🎁</div>
+        <button id="show-photo-btn">Lihat Kejutan Kita ✨</button>
+
+        <div class="hearts">🧡🎁🔥</div> </div>
+
+    <div id="photo-container">
+        <img src="kenangan.jpg" alt="Foto Kenangan Kita" id="memory-photo">
+        <p>Sejuta kata nggak cukup buat ngejelasin betapa bahagianya aku sama kamu. 🥰</p>
+        <button id="close-photo-btn">Tutup</button>
     </div>
+
+    <script>
+        const showBtn = document.getElementById('show-photo-btn');
+        const photoContainer = document.getElementById('photo-container');
+        const closeBtn = document.getElementById('close-photo-btn');
+        const mainContent = document.getElementById('main-content');
+
+        // Fungsi Menampilkan Foto
+        showBtn.addEventListener('click', () => {
+            photoContainer.classList.add('show');
+            mainContent.style.filter = "blur(5px)"; // Efek buram di latar belakang
+        });
+
+        // Fungsi Menutup Foto
+        closeBtn.addEventListener('click', () => {
+            photoContainer.classList.remove('show');
+            mainContent.style.filter = "none"; // Hilangkan efek buram
+        });
+    </script>
 
 </body>
 </html>
