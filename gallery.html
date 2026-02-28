@@ -28,7 +28,6 @@
             opacity: 0.8;
         }
 
-        /* Tata Letak Galeri */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -65,19 +64,40 @@
             font-weight: bold;
         }
 
-        .back-btn {
+        /* --- BAGIAN TOMBOL BARU --- */
+        .button-group {
             margin-top: 40px;
-            background-color: #ff7f50;
-            color: white;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
             text-decoration: none;
             padding: 12px 25px;
             border-radius: 30px;
             font-weight: bold;
             transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
         }
 
-        .back-btn:hover {
-            background-color: #e66d43;
+        .back-btn {
+            background-color: #4a4a4a; /* Warna gelap agar kontras */
+            color: white;
+        }
+
+        .love-btn {
+            background-color: #ff7f50; /* Warna oren khasmu */
+            color: white;
+            box-shadow: 0 4px 15px rgba(255,127,80, 0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
         }
 
         @keyframes fadeIn {
@@ -111,10 +131,18 @@
             <img src="foto4.jpg" alt="Memory 4">
             <p>Just You & Me 🧡</p>
         </div>
+    </div>
 
-        </div>
+    <div class="button-group">
+        <a href="index.html" class="btn back-btn">⬅ Back to Home</a>
+        <button class="btn love-btn" onclick="sayLove()">I Love You More 🧡</button>
+    </div>
 
-    <a href="index.html" class="back-btn">⬅ Back to Home</a>
+    <script>
+        function sayLove() {
+            alert("I Love You More Than Anything, Mujayyanah! 🧡✨");
+        }
+    </script>
 
 </body>
 </html>
