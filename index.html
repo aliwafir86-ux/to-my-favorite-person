@@ -37,7 +37,7 @@
             transition: color 0.3s ease;
         }
 
-        h1 { font-size: 2.5rem; margin-bottom: 20px; }
+        h1 { font-size: 2.5rem; margin-bottom: 20px; min-height: 3rem; } /* Tambahan min-height agar layout tidak goyang saat ngetik */
 
         p { line-height: 1.6; font-size: 1.1rem; margin-bottom: 20px; }
 
@@ -138,7 +138,7 @@
     </audio>
 
     <div class="container" id="main-content">
-        <h1>Happy Birthday, Mujayyanah! 🎂</h1>
+        <h1 id="typing-title"></h1>
         
         <p>Happy Birthday to the one who makes me smile at my phone like an idiot.</p>
         
@@ -147,13 +147,12 @@
         
         <p><i>To more birthdays, more memories, and more 'us' ahead!</i></p>
 
-        <div style="margin-bottom: 10px;">
-            <img src="kucing.gif" width="100" alt="Cute Cat">
-        </div>
-
         <button id="show-photo-btn">See Our Surprise ✨</button>
 
-        <div class="hearts">🧡🎁🔥</div> 
+        <div class="hearts" id="candle-area" style="cursor:pointer; margin-top: 25px;">
+            <span id="candle">🎂</span>
+            <p id="wish-text" style="font-size: 14px; display:none; color: #ff7f50; font-weight: bold;">Make a wish, Sayang! ✨</p>
+        </div>
     </div>
 
     <div id="photo-container">
@@ -171,6 +170,33 @@
         const caption = document.getElementById('photo-caption');
         const audio = document.getElementById('myAudio');
 
+        // LOGIKA BARU: Efek Mengetik Judul
+        const titleElement = document.getElementById('typing-title');
+        const textToType = "Happy Birthday, Mujayyanah! 🎂";
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < textToType.length) {
+                titleElement.innerHTML += textToType.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        // LOGIKA BARU: Fitur Tiup Lilin
+        const candleArea = document.getElementById('candle-area');
+        const candle = document.getElementById('candle');
+        const wishText = document.getElementById('wish-text');
+
+        candleArea.addEventListener('click', () => {
+            candle.innerHTML = "🍰"; // Lilin "mati" jadi kue potongan
+            wishText.style.display = "block";
+            // Beri efek hati melimpah saat tiup lilin
+            for(let i=0; i<15; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        });
+
         // Fungsi membuat hati melayang
         function createHeart() {
             const heart = document.createElement('div');
@@ -183,10 +209,11 @@
         }
         setInterval(createHeart, 600);
 
-        // LOGIKA: Reset waktu ke awal setiap kali halaman dimuat (Refresh/Buka baru)
+        // Jalankan efek ngetik saat load
         window.addEventListener('load', () => {
             localStorage.removeItem('audioTime'); 
             audio.currentTime = 0;
+            typeWriter();
         });
 
         let photoIndex = 0;
@@ -202,8 +229,6 @@
         showBtn.addEventListener('click', () => {
             photoContainer.classList.add('show');
             mainContent.style.filter = "blur(5px)";
-            
-            // Putar lagu dari awal (0) karena waktu baru saja di-reset saat load
             audio.play().catch(e => console.log("Audio play failed: ", e));
         });
 
@@ -219,7 +244,6 @@
                 nextBtn.innerText = "Enter Gallery ➔";
                 
                 nextBtn.onclick = () => {
-                    // SIMPAN WAKTU: Tepat sebelum pindah ke galeri
                     localStorage.setItem('audioTime', audio.currentTime);
                     window.location.href = "gallery.html"; 
                 };
@@ -228,5 +252,3 @@
     </script>
 </body>
 </html>
-
-
