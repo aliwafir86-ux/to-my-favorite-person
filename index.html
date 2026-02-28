@@ -140,7 +140,13 @@
         const mainContent = document.getElementById('main-content');
         const memoryImg = document.getElementById('memory-photo');
         const caption = document.getElementById('photo-caption');
-        const audio = document.getElementById('myAudio'); 
+        const audio = document.getElementById('myAudio');
+
+        // LOGIKA: Reset waktu ke awal setiap kali halaman dimuat (Refresh/Buka baru)
+        window.addEventListener('load', () => {
+            localStorage.removeItem('audioTime'); 
+            audio.currentTime = 0;
+        });
 
         let photoIndex = 0;
         
@@ -156,21 +162,9 @@
             photoContainer.classList.add('show');
             mainContent.style.filter = "blur(5px)";
             
-            // Cek apakah ada waktu tersimpan sebelumnya
-            const savedTime = localStorage.getItem('audioTime');
-            if (savedTime) {
-                audio.currentTime = savedTime;
-            }
-            
+            // Putar lagu dari awal (0) karena waktu baru saja di-reset saat load
             audio.play().catch(e => console.log("Audio play failed: ", e));
         });
-
-        // Simpan detik musik setiap saat agar bisa diteruskan di halaman galeri
-        setInterval(() => {
-            if (!audio.paused) {
-                localStorage.setItem('audioTime', audio.currentTime);
-            }
-        }, 1000);
 
         nextBtn.addEventListener('click', () => {
             photoIndex++;
@@ -184,6 +178,8 @@
                 nextBtn.innerText = "Enter Gallery ➔";
                 
                 nextBtn.onclick = () => {
+                    // SIMPAN WAKTU: Tepat sebelum pindah ke galeri
+                    localStorage.setItem('audioTime', audio.currentTime);
                     window.location.href = "gallery.html"; 
                 };
             }
