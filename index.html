@@ -140,7 +140,7 @@
         const mainContent = document.getElementById('main-content');
         const memoryImg = document.getElementById('memory-photo');
         const caption = document.getElementById('photo-caption');
-        const audio = document.getElementById('myAudio'); // Variabel audio
+        const audio = document.getElementById('myAudio'); 
 
         let photoIndex = 0;
         
@@ -156,9 +156,21 @@
             photoContainer.classList.add('show');
             mainContent.style.filter = "blur(5px)";
             
-            // FUNGSI PUTAR LAGU SAAT KLIK
+            // Cek apakah ada waktu tersimpan sebelumnya
+            const savedTime = localStorage.getItem('audioTime');
+            if (savedTime) {
+                audio.currentTime = savedTime;
+            }
+            
             audio.play().catch(e => console.log("Audio play failed: ", e));
         });
+
+        // Simpan detik musik setiap saat agar bisa diteruskan di halaman galeri
+        setInterval(() => {
+            if (!audio.paused) {
+                localStorage.setItem('audioTime', audio.currentTime);
+            }
+        }, 1000);
 
         nextBtn.addEventListener('click', () => {
             photoIndex++;
