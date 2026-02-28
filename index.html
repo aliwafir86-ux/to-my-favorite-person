@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Love!</title>
+    <title>Happy Birthday Sayang!</title>
     <style>
-        /* Gaya Dasar */
+        /* Gaya Dasar - Sesuai Request Tidak Diubah */
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fffaf0; /* Sedikit krem agar cocok dengan oren */
+            background-color: #fffaf0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,7 +19,6 @@
             overflow: hidden;
         }
 
-        /* Container Utama */
         .container {
             text-align: center;
             background: white;
@@ -31,39 +30,25 @@
             position: relative;
         }
 
-        /* Teks Judul dan Sorotan - Diubah ke Warna Oren */
         h1, .highlight {
-            color: #ff7f50; /* Warna Oren (Coral) */
+            color: #ff7f50; /* Warna Oren Tetap */
             transition: color 0.3s ease;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
+        h1 { font-size: 2.5rem; margin-bottom: 20px; }
 
-        p {
-            line-height: 1.6;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
+        p { line-height: 1.6; font-size: 1.1rem; margin-bottom: 20px; }
 
-        .highlight {
-            font-weight: bold;
-        }
+        .highlight { font-weight: bold; }
 
-        /* Animasi Hati di Bawah Teks */
         .hearts {
             font-size: 30px;
             margin-top: 20px;
             animation: bounce 1.5s infinite;
         }
 
-        /* --- FITUR FOTO BARU --- */
-
-        /* Tombol Spesial */
         #show-photo-btn {
-            background-color: #ff7f50; /* Warna Oren */
+            background-color: #ff7f50;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -80,9 +65,8 @@
             box-shadow: 0 6px 15px rgba(255,127,80, 0.4);
         }
 
-        /* Kontainer Foto Tersembunyi */
         #photo-container {
-            display: none; /* Awalnya tidak terlihat */
+            display: none;
             position: fixed;
             top: 50%;
             left: 50%;
@@ -93,16 +77,13 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.2);
             z-index: 1000;
             text-align: center;
-            width: 300px; /* Atur lebar foto sesuai kebutuhan */
+            width: 300px;
             opacity: 0;
-            animation: popIn 0.5s forwards ease-out; /* Animasi muncul */
+            animation: popIn 0.5s forwards ease-out;
         }
 
-        #photo-container.show {
-            display: block; /* Menampilkan kontainer */
-        }
+        #photo-container.show { display: block; }
 
-        /* Gaya untuk Foto Itu Sendiri */
         #memory-photo {
             width: 100%;
             height: auto;
@@ -110,33 +91,19 @@
             margin-bottom: 15px;
         }
 
-        /* Tombol Tutup Foto */
         #close-photo-btn {
-            background-color: #4a4a4a;
+            background-color: #ff7f50; /* Diubah ke oren agar senada */
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: 20px;
             cursor: pointer;
+            font-weight: bold;
         }
 
-        /* Animasi untuk Popup Foto */
-        @keyframes popIn {
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
-
-        /* Animasi yang Sudah Ada */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+        @keyframes popIn { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
 <body>
@@ -153,32 +120,57 @@
 
         <button id="show-photo-btn">See Our Surprise ✨</button>
 
-        <div class="hearts">🧡🎁🔥</div> </div>
+        <div class="hearts">🧡🎁🔥</div> 
+    </div>
 
     <div id="photo-container">
-        <img src="kenangan.jpg" alt="Our Memory" id="memory-photo">
-        <p>A million words wouldn't be enough to explain how happy I am with you. 🥰</p>
-        <button id="close-photo-btn">Close</button>
+        <img src="foto1.jpg" alt="Our Memory" id="memory-photo">
+        <p id="photo-caption">A million words wouldn't be enough... 🥰</p>
+        <button id="close-photo-btn">Next Memory</button>
     </div>
 
     <script>
         const showBtn = document.getElementById('show-photo-btn');
         const photoContainer = document.getElementById('photo-container');
-        const closeBtn = document.getElementById('close-photo-btn');
+        const nextBtn = document.getElementById('close-photo-btn');
         const mainContent = document.getElementById('main-content');
+        const memoryImg = document.getElementById('memory-photo');
+        const caption = document.getElementById('photo-caption');
 
-        // Fungsi Menampilkan Foto
+        let photoIndex = 0;
+        
+        // Daftar 5 Foto Kamu (Pastikan nama filenya sesuai di GitHub nanti)
+        const photos = [
+            { src: 'foto1.jpg', msg: 'The first time we met... ❤️' },
+            { src: 'foto2.jpg', msg: 'I love how you laugh! 😂' },
+            { src: 'foto3.jpg', msg: 'Every moment with you is a treasure. ✨' },
+            { src: 'foto4.jpg', msg: 'You are my favorite person. 🧡' },
+            { src: 'foto5.jpg', msg: 'And I want to spend more years with you. 🥂' }
+        ];
+
         showBtn.addEventListener('click', () => {
             photoContainer.classList.add('show');
-            mainContent.style.filter = "blur(5px)"; // Efek buram di latar belakang
+            mainContent.style.filter = "blur(5px)";
         });
 
-        // Fungsi Menutup Foto
-        closeBtn.addEventListener('click', () => {
-            photoContainer.classList.remove('show');
-            mainContent.style.filter = "none"; // Hilangkan efek buram
+        nextBtn.addEventListener('click', () => {
+            photoIndex++;
+
+            if (photoIndex < photos.length) {
+                // Ganti ke foto berikutnya
+                memoryImg.src = photos[photoIndex].src;
+                caption.innerText = photos[photoIndex].msg;
+                nextBtn.innerText = "Next Memory";
+            } else {
+                // Jika sudah 5 foto, arahkan ke Galeri atau Link lain
+                caption.innerHTML = "<strong>You've seen them all!</strong><br>Ready to see our full gallery?";
+                nextBtn.innerText = "Enter Gallery ➔";
+                
+                nextBtn.onclick = () => {
+                    window.location.href = "LINK_GALLERY_KAMU_DISINI"; // Ganti dengan link galeri kamu
+                };
+            }
         });
     </script>
-
 </body>
 </html>
