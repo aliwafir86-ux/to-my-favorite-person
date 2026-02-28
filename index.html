@@ -92,7 +92,7 @@
         }
 
         #close-photo-btn {
-            background-color: #ff7f50; /* Diubah ke oren agar senada */
+            background-color: #ff7f50; 
             color: white;
             border: none;
             padding: 10px 20px;
@@ -107,6 +107,10 @@
     </style>
 </head>
 <body>
+
+    <audio id="myAudio" loop>
+        <source src="musik.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="container" id="main-content">
         <h1>Happy Birthday, Mujayyanah! 🎂</h1>
@@ -136,10 +140,10 @@
         const mainContent = document.getElementById('main-content');
         const memoryImg = document.getElementById('memory-photo');
         const caption = document.getElementById('photo-caption');
+        const audio = document.getElementById('myAudio'); // Variabel audio
 
         let photoIndex = 0;
         
-        // Daftar 5 Foto Kamu (Pastikan nama filenya sesuai di GitHub nanti)
         const photos = [
             { src: 'foto1.jpg', msg: 'The first time we met... ❤️' },
             { src: 'foto2.jpg', msg: 'I love how you laugh! 😂' },
@@ -151,27 +155,27 @@
         showBtn.addEventListener('click', () => {
             photoContainer.classList.add('show');
             mainContent.style.filter = "blur(5px)";
+            
+            // FUNGSI PUTAR LAGU SAAT KLIK
+            audio.play().catch(e => console.log("Audio play failed: ", e));
         });
 
         nextBtn.addEventListener('click', () => {
             photoIndex++;
 
             if (photoIndex < photos.length) {
-                // Ganti ke foto berikutnya
                 memoryImg.src = photos[photoIndex].src;
                 caption.innerText = photos[photoIndex].msg;
                 nextBtn.innerText = "Next Memory";
             } else {
-                // Jika sudah 5 foto, arahkan ke Galeri atau Link lain
                 caption.innerHTML = "<strong>You've seen them all!</strong><br>Ready to see our full gallery?";
                 nextBtn.innerText = "Enter Gallery ➔";
                 
                 nextBtn.onclick = () => {
-                    window.location.href = "gallery.html"; // Ganti dengan link galeri kamu
+                    window.location.href = "gallery.html"; 
                 };
             }
         });
     </script>
 </body>
 </html>
-
