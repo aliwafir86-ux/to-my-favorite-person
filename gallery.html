@@ -3,167 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Sayang!</title>
-    <link rel="icon" href="https://fav.farm/🎂">
-    
+    <title>Our Little Gallery 🧡</title>
     <style>
-        /* Gaya Dasar - Sesuai Request Tidak Diubah */
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #fffaf0, #ffeddb, #fffaf0);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #4a4a4a;
-            overflow: hidden;
-            position: relative; 
-        }
-
-        /* EFEK KLIK HATI */
-        .click-heart {
-            position: fixed;
-            font-size: 20px;
-            color: #ff7f50;
-            pointer-events: none;
-            z-index: 9999;
-            animation: clickPop 0.8s ease-out forwards;
-        }
-
-        .container {
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            max-width: 80%;
-            animation: fadeIn 1.5s ease-in;
-            position: relative;
-            z-index: 10;
-        }
-
-        h1, .highlight {
-            color: #ff7f50;
-            transition: color 0.3s ease;
-        }
-
-        h1 { font-size: 2.5rem; margin-bottom: 20px; min-height: 3rem; }
-
-        p { line-height: 1.6; font-size: 1.1rem; margin-bottom: 20px; }
-
-        .highlight { 
-            font-weight: bold; 
-            position: relative;
-            cursor: help;
-        }
-
-        .highlight:hover::after {
-            content: "Yes, that's YOU! 🧡";
-            position: absolute;
-            bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #4a4a4a;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            z-index: 100;
-        }
-
-        .hearts {
-            font-size: 30px;
-            margin-top: 20px;
-            animation: bounce 1.5s infinite;
-        }
-
-        #show-photo-btn {
-            background-color: #ff7f50;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 1rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 10px rgba(255,127,80, 0.3);
-            margin-top: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        .heart-bg {
-            position: absolute;
-            color: #ff7f50;
-            opacity: 0.3;
-            font-size: 20px;
-            pointer-events: none;
-            animation: floatUp 5s linear infinite;
-            z-index: 1;
-        }
-
-        #photo-container {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.95);
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            z-index: 1000;
-            text-align: center;
-            width: 300px;
-            opacity: 0;
-            animation: popIn 0.5s forwards ease-out;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fffaf0;
+            color: #4a4a4a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        #photo-container.show { display: block; }
+        h1 {
+            color: #ff7f50;
+            margin-bottom: 10px;
+            animation: fadeIn 1.5s ease-in;
+        }
 
-        #memory-photo {
+        .subtitle {
+            margin-bottom: 30px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 15px;
+            max-width: 1000px;
+            padding: 10px;
         }
 
-        #close-photo-btn {
-            background-color: #ff7f50; 
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
+        .gallery-item {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .gallery-item p {
+            font-size: 0.9rem;
+            color: #ff7f50;
             font-weight: bold;
         }
 
-        /* Animasi */
-        @keyframes clickPop {
-            0% { transform: scale(1) translateY(0); opacity: 1; }
-            100% { transform: scale(1.5) translateY(-50px); opacity: 0; }
+        .button-group {
+            margin-top: 40px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
         }
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+
+        .back-btn {
+            background-color: #4a4a4a;
+            color: white;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+
+        .love-btn {
+            background-color: #ff7f50;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255,127,80, 0.3);
         }
-        @keyframes popIn { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -172,120 +111,59 @@
         <source src="musik.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="container" id="main-content">
-        <h1 id="typing-title"></h1>
-        <p>Happy Birthday to the one who makes me smile at my phone like an idiot.</p>
-        <p>Today is your special day, but I’m the one who feels like I got the greatest gift just by having you. 
-        Stay exactly as you are, because for me, you are <span class="highlight">already more than enough.</span></p>
-        <p><i>To more birthdays, more memories, and more 'us' ahead!</i></p>
+    <h1>Our Memories 🧡</h1>
+    <p class="subtitle">Every picture tells a story of us...</p>
 
-        <button id="show-photo-btn">See Our Surprise ✨</button>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="foto1.jpg" alt="Memory 1">
+            <p>The Beginning ✨</p>
+        </div>
 
-        <div class="hearts" id="candle-area" style="cursor:pointer; margin-top: 25px;">
-            <span id="candle">🎂</span>
-            <p id="wish-text" style="font-size: 14px; display:none; color: #ff7f50; font-weight: bold;">Make a wish, Sayang! ✨</p>
+        <div class="gallery-item">
+            <img src="foto2.jpg" alt="Memory 2">
+            <p>Your Beautiful Smile 😊</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="foto3.jpg" alt="Memory 3">
+            <p>Best Date Ever! 🍕</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="foto4.jpg" alt="Memory 4">
+            <p>Just You & Me 🧡</p>
         </div>
     </div>
 
-    <div id="photo-container">
-        <img src="foto1.jpg" alt="Our Memory" id="memory-photo">
-        <p id="photo-caption">A million words wouldn't be enough... 🥰</p>
-        <button id="close-photo-btn">Next Memory</button>
+    <div class="button-group">
+        <a href="index.html" class="btn back-btn">⬅ Back to Home</a>
+        <button class="btn love-btn" onclick="sayLove()">I Love You More 🧡</button>
     </div>
 
     <script>
-        // FITUR KLIK HATI (KURSOR)
-        document.addEventListener('click', (e) => {
-            const heart = document.createElement('div');
-            heart.innerHTML = '🧡';
-            heart.className = 'click-heart';
-            heart.style.left = (e.clientX - 10) + 'px';
-            heart.style.top = (e.clientY - 10) + 'px';
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 800);
-        });
-
-        const showBtn = document.getElementById('show-photo-btn');
-        const photoContainer = document.getElementById('photo-container');
-        const nextBtn = document.getElementById('close-photo-btn');
-        const mainContent = document.getElementById('main-content');
-        const memoryImg = document.getElementById('memory-photo');
-        const caption = document.getElementById('photo-caption');
         const audio = document.getElementById('myAudio');
 
-        const titleElement = document.getElementById('typing-title');
-        const textToType = "Happy Birthday, Mujayyanah! 🎂";
-        let charIndex = 0;
-
-        function typeWriter() {
-            if (charIndex < textToType.length) {
-                titleElement.innerHTML += textToType.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, 100);
-            }
-        }
-
-        const candleArea = document.getElementById('candle-area');
-        const candle = document.getElementById('candle');
-        const wishText = document.getElementById('wish-text');
-
-        candleArea.addEventListener('click', () => {
-            candle.innerHTML = "🍰"; 
-            wishText.style.display = "block";
-            for(let i=0; i<15; i++) {
-                setTimeout(createHeart, i * 100);
-            }
-        });
-
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart-bg');
-            heart.innerHTML = '🧡';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
-        }
-        setInterval(createHeart, 600);
-
+        // FUNGSI MUSIK NYAMBUNG
         window.addEventListener('load', () => {
-            localStorage.removeItem('audioTime'); 
-            audio.currentTime = 0;
-            typeWriter();
-        });
-
-        let photoIndex = 0;
-        const photos = [
-            { src: 'foto1.jpg', msg: 'The first time we met... ❤️' },
-            { src: 'foto2.jpg', msg: 'I love how you laugh! 😂' },
-            { src: 'foto3.jpg', msg: 'Every moment with you is a treasure. ✨' },
-            { src: 'foto4.jpg', msg: 'You are my favorite person. 🧡' },
-            { src: 'foto5.jpg', msg: 'And I want to spend more years with you. 🥂' }
-        ];
-
-        const buttonMessages = ["Lagi? Oke! 📸", "Ciee nungguin ya? 😋", "Masih ada lagi nih... ✨", "Sabar, satu lagi! 🧡", "Duh, cantiknya siapa sih ini? 😍"];
-
-        showBtn.addEventListener('click', () => {
-            photoContainer.classList.add('show');
-            mainContent.style.filter = "blur(5px)";
-            audio.play().catch(e => console.log("Audio play failed: ", e));
-        });
-
-        nextBtn.addEventListener('click', () => {
-            photoIndex++;
-            if (photoIndex < photos.length) {
-                memoryImg.src = photos[photoIndex].src;
-                caption.innerText = photos[photoIndex].msg;
-                nextBtn.innerText = buttonMessages[photoIndex % buttonMessages.length];
-            } else {
-                caption.innerHTML = "<strong>You've seen them all!</strong><br>Ready to see our full gallery?";
-                nextBtn.innerText = "Enter Gallery ➔";
-                nextBtn.onclick = () => {
-                    localStorage.setItem('audioTime', audio.currentTime);
-                    window.location.href = "gallery.html"; 
-                };
+            const savedTime = localStorage.getItem('audioTime');
+            if (savedTime) {
+                audio.currentTime = savedTime;
             }
+            audio.play().catch(() => {
+                console.log("Klik di mana saja untuk memutar musik jika tertahan browser.");
+            });
         });
+
+        // Simpan waktu musik setiap detik agar sinkron saat pindah halaman
+        setInterval(() => {
+            localStorage.setItem('audioTime', audio.currentTime);
+        }, 1000);
+
+        function sayLove() {
+            alert("I Love You More Than Anything, Mujayyanah! 🧡✨");
+        }
     </script>
+
 </body>
 </html>
