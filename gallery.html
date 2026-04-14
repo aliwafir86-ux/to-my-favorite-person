@@ -144,17 +144,31 @@
             <img src="foto12.jpg" alt="Memory 6">
             <p>My Love 🧡</p>
         </div>
+
+        <div class="gallery-item">
+            <img src="foto13.jpg" alt="Memory 7">
+            <p>Cantik banget sendirian... 😍</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="foto14.jpg" alt="Memory 8">
+            <p>Always better together 🧡</p>
+        </div>
+
+        <div class="gallery-item">
+            <img src="foto15.jpg" alt="Memory 9">
+            <p>Our Special Promise 💍</p>
+        </div>
     </div>
 
     <div class="button-group">
         <a href="index.html" class="btn back-btn">⬅ Back to Home</a>
         <button class="btn love-btn" onclick="sayLove()">I Love You More 🧡</button>
     </div>
-
+    
     <script>
         const audio = document.getElementById('myAudio');
 
-        // FUNGSI MUSIK NYAMBUNG
         window.addEventListener('load', () => {
             const savedTime = localStorage.getItem('audioTime');
             if (savedTime) {
@@ -165,7 +179,6 @@
             });
         });
 
-        // Simpan waktu musik setiap detik agar sinkron saat pindah halaman
         setInterval(() => {
             localStorage.setItem('audioTime', audio.currentTime);
         }, 1000);
