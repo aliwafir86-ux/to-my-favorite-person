@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Letter 💌</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fffaf0;
+            color: #4a4a4a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .letter-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 600px;
+            width: 100%;
+            line-height: 1.8;
+            position: relative;
+            animation: fadeIn 2s ease-in;
+        }
+
+        /* Hiasan garis seperti kertas surat */
+        .letter-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 100%;
+            width: 2px;
+            background-color: #ffeadb;
+        }
+
+        h1 {
+            color: #ff7f50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            white-space: pre-line; /* Agar enter di teks terbaca */
+            font-size: 1.1rem;
+        }
+
+        .signature {
+            margin-top: 40px;
+            text-align: right;
+            font-style: italic;
+            font-weight: bold;
+            color: #ff7f50;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            background-color: #4a4a4a;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="letter-container">
+        <h1>For You, Mujayyanah 🧡</h1>
+        
+        <div class="content">
+            Halo Sayang,
+
+            Tuliskan kata-kata suratmu di sini...
+            Misalnya: Aku bersyukur banget bisa kenal sama kamu. 
+            Setiap foto di galeri tadi punya cerita sendiri, 
+            tapi perasaan aku ke kamu jauh lebih luas dari sekadar foto.
+
+            Terima kasih ya sudah jadi bagian terindah dalam hidupku.
+            Aku janji akan selalu ada di sampingmu.
+        </div>
+
+        <div class="signature">
+            With love, 
+            [Nama Kamu]
+        </div>
+    </div>
+
+    <a href="gallery.html" class="back-btn">⬅ Back to Gallery</a>
+
+</body>
+</html>
